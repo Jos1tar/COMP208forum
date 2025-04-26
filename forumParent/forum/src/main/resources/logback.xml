@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Console output -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!-- Format output: %d represents date, %thread represents thread name, %-5level represents level with 5-character width, %msg represents log message, %n represents newline -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}-%msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+
+          <!--  <FileNamePattern>D:/tlias-%d{yyyy-MM-dd}-%i.log</FileNamePattern>-->
+            <!-- IN the linux server -->
+            <FileNamePattern>/root/log/forum-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+            <!-- maximum log -->
+            <MaxHistory>30</MaxHistory>
+            <!-- max file size -->
+            <maxFileSize>10MB</maxFileSize>
+        </rollingPolicy>
+
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}-%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- level debug -->
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>
