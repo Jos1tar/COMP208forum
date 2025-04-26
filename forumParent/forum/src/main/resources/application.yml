@@ -1,0 +1,48 @@
+#Configure database connection information
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: yours
+    username: root
+    password: yours
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+#Configure the server port. Change it yours.
+  mail:
+    host: smtp.163.com
+    port: 465
+    username: yours
+    password: yours
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+#Configure mybatis' log output to the console
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #Configure the mapping switch for camel hump naming in mybatis
+    map-underscore-to-camel-case: true
+
+mybatis-plus:
+  configuration:
+    #Configure the log output to the console
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: delFlag
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      id-type: auto
+
+#OSS. You have to use your own OSS account for file uploading
+aliyun:
+  oss:
+    endpoint: https://oss-eu-west-1.aliyuncs.com
+    bucketName: comp208
+    region: eu-west-1
